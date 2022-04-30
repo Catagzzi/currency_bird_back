@@ -42,6 +42,7 @@ async function getSummaryTable() {
             SELECT ref.*, usr.name
             FROM referral AS ref
             INNER JOIN user AS usr ON ref.user = usr.id
+            WHERE ref.referred_quantity > 0
             ORDER BY ref.total DESC, ref.referred_quantity DESC`;
     const rows = await db.query(sqlGetTablaResumen)
     return rows
