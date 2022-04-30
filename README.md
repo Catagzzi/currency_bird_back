@@ -25,6 +25,11 @@ npm i -D express nodemon
 npm i mysql
 ```
 
+* UUID
+```
+npm install uuid
+```
+
 ## 3) Variables de Ambiente
 > En el archivo .env.template se muestran las variables de ambiente necesarias para conectarse correctamente a la base de datos en local. Por favor exportarlas en la terminal donde se vaya a ejecutar el proyecto y con los datos correctos de la base de datos que se tenga en local.
 

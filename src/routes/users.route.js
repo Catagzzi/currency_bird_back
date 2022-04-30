@@ -5,7 +5,9 @@ const usersController = require('../controllers/users.controller');
 const router = express.Router();
 
 // Define endpoints related to users
-router.post('/create', usersController.register);
+router.post('/register', usersController.register);
+router.get('/summary_table', usersController.getTable);
+router.post('/referral/create', usersController.getReferralLink);
 
 // Export module with endpoints related to users
 module.exports = router;

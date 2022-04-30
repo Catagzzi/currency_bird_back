@@ -2,9 +2,13 @@ const express = require('express');
 const usersRouter = require("./src/routes/users.route");
 const app = express();
 const PORT = process.env.PORT || 3050;
-
-
+//const parse = require 
 app.use(express.json());
+app.use(
+    express.urlencoded({
+      extended: true,
+    })
+  );
 
 // Route
 app.get('/', (req, res) => {
@@ -14,66 +18,9 @@ app.get('/', (req, res) => {
 // Here add the new routers
 app.use('/users', usersRouter);
 
-// ----------------------------------------------------------------------------
-// CRUD EJEMPLO
-// app.get('/resumen', (req, res) => {
-//     const sqlGetUsuarios = 'SELECT * FROM user';
-//     connection.query(sqlGetUsuarios, (err, results) => {
-//         if (err) throw err;
-//         if (results.length > 0){
-//             res.json(results);
-//         } else {
-//             res.send('Sin resultados');
-//         }
-//     });
-// });
-
-// app.put('/update/:id', (req, res) => {
-//     const {id } = req.params;
-//     const {email, direccion} = req.body;
-//     const sqlUpdateUsuario = `UPDATE usuario SET Direccion = '${direccion}', Email = '${email}'  WHERE id = ${id}`;
-//     connection.query(sqlUpdateUsuario, error => {
-//         if (error) throw error;
-//         res.send('Usuario actualizado correctamente');
-//     });
-// });
-
-// app.delete('/delete/:id', (req, res) => {
-//     const {id} = req.params;
-//     const sqlDeleteUsuario = `DELETE FROM usuario WHERE id = ${id}`;
-//     connection.query(sqlDeleteUsuario, error => {
-//         if (error) throw error;
-//         res.send('Usuario eliminado correctamente');
-//     });
-// });
 
 // ----------------------------------------------------------------------------
 
-// Summary Table
-// app.get('/table', (req, res) => {
-//         const sqlGetTablaResumen = `
-//             SELECT ref.*, usr.name
-//             FROM referral AS ref
-//             INNER JOIN user AS usr ON ref.user = usr.id
-//             ORDER BY ref.total DESC, ref.referred_quantity DESC`;
-//         connection.query(sqlGetTablaResumen, (err, results) => {
-//         if (err) {
-//             res.send({"code": 500, "message": "Internal server error: Error getting data of referral"});
-//         } else {
-//             res.send({"code": 200, "message": "Success getting result", "result": results});
-//         }
-//     });
-// });
-
-// REGISTRAR
-
-// function checkEmail(email, callback) {
-//     const sqlCheckEmail = 'SELECT COUNT(*) AS exist FROM user WHERE email = ?';
-//     connection.query(sqlCheckEmail, email,  (err, results) => {
-//         if (err) {return callback(-1)}
-//         else {return callback(results[0].exist)}
-//     });
-// }
 
 
 // app.post('/insert', (req, res) => {
