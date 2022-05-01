@@ -1,4 +1,4 @@
 .git
 ./mysql
-node_modules
+./node_modules
 *.sql
