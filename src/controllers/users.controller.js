@@ -12,19 +12,25 @@ async function register(req, res, next) {
         } else {
             if (req.body.referral_link != '') {
                 try{
-                    //TODO: implement transaction
-                    // Insert refered user in table user
-                    const resultRegister = await userService.registerUser(req.body.name, req.body.email, req.body.address, req.body.sex, link);
-                    // Get the id of the referred user
-                    const insertedID = resultRegister.insertId;
-                    // Insert the referred user into table referral
-                    const resultSaveReferral = await userService.saveReferralData(insertedID, 5000);
-                    // Get the ID of the source user
-                    const sourceUserID = await userService.getIDByLink(req.body.referral_link);
-                    // Update referred quantity (+1) and total (+5000)
-                    const resultUpdateReferral = await userService.updateReferralData(sourceUserID);
-                    // Create the response
-                    res.json({"code": 200, "message": "User created correctly", "result": {resultRegister, resultSaveReferral, resultUpdateReferral}});
+                    const linkExist = await userService.checkLink(req.body.referral_link);
+                    if (linkExist > 0){
+                        //TODO: implement transaction
+                        // Insert refered user in table user
+                        const resultRegister = await userService.registerUser(req.body.name, req.body.email, req.body.address, req.body.sex, link);
+                        // Get the id of the referred user
+                        const insertedID = resultRegister.insertId;
+                        // Insert the referred user into table referral
+                        const resultSaveReferral = await userService.saveReferralData(insertedID, 5000);
+                        // Get the ID of the source user
+                        const sourceUserID = await userService.getIDByLink(req.body.referral_link);
+                        console.log("ID DEL USUARIO ORIGEN", sourceUserID )
+                        // Update referred quantity (+1) and total (+5000)
+                        const resultUpdateReferral = await userService.updateReferralData(sourceUserID);
+                        // Create the response
+                        res.json({"code": 200, "message": "User created correctly", "result": {resultRegister, resultSaveReferral, resultUpdateReferral}});
+                    } else {
+                        res.json({"code": 404, "message": "Referral link doesn't exist"});
+                    }
                 } catch (err) {
                     throw(err)
                 }

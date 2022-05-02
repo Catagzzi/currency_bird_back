@@ -58,6 +58,17 @@ async function getIDByLink(link) {
     return rows[0].id
 }
 
+// Function to check if a referral linl exists in table users
+async function checkLink(link) {
+    const sqlGetUserIDByLink = `
+            SELECT count(id)
+            FROM user
+            WHERE referral_link = ?`;
+    const rows = await db.query(sqlGetUserIDByLink, [link]);
+    return rows[0].id
+}
+
+
 
 // Function to get the referral link of an user by the email
 async function getReferralLink(email) {
@@ -74,5 +85,6 @@ module.exports = {
     getReferralLink,
     getIDByLink,
     saveReferralData,
-    updateReferralData
+    updateReferralData,
+    checkLink
 }
