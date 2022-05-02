@@ -63,7 +63,7 @@ async function getIDByLink(link) {
 async function getReferralLink(email) {
     const sqlGetReferralLink = `select referral_link FROM user where email = ?`;
     const rows = await db.query(sqlGetReferralLink, [email]);
-    return rows
+    return rows[0].referral_link
 }
 
 // Export module with db connection function

@@ -5,13 +5,12 @@ const uuid = require("../utils/link_generator.util")
 // Controller to register an user
 async function register(req, res, next) {
     let link = uuid.getLink()
-    console.log(link)
     try {
         const userExist = await userService.checkEmail(req.body.email);
         if (userExist > 0) {
             res.json({"code": 409, "message": "Conflict: The user already exists in DB"});
         } else {
-            if (req.body.referral_link != null) {
+            if (req.body.referral_link != '') {
                 try{
                     //TODO: implement transaction
                     // Insert refered user in table user
@@ -44,6 +43,7 @@ async function register(req, res, next) {
             }
         }
     } catch (err) {
+        console.log("REQUEST", req.body)
         console.error(`Error while registering user`, err.message);
         res.json({"code": 500, "message": "Internal server error: Error while registering user"});
         next(err);
@@ -65,6 +65,7 @@ async function getTable(req, res, next) {
 // Controller to obtain the referral link of an user
 async function getReferralLink(req, res, next) {
     try {
+        console.log("REQUEST", req.body)
         const userExist = await userService.checkEmail(req.body.email);
         if (userExist > 0) {
             const result = await userService.getReferralLink(req.body.email);
@@ -73,6 +74,7 @@ async function getReferralLink(req, res, next) {
             res.json({"code": 404, "message": "Error: User not found"});
         }
     } catch  (err) {
+        console.log("REQUEST", req.body)
         console.error(`Error getting the referral link`, err.message);
         res.send({"code": 500, "message": "Internal server error: Error getting the referral link"});
     }
