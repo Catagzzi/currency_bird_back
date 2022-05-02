@@ -2,7 +2,7 @@
 const userService = require("../services/users.service")
 const uuid = require("../utils/link_generator.util")
 
-// Controller to register an user
+// Controller to register a user
 async function register(req, res, next) {
     let link = uuid.getLink()
     try {
@@ -68,7 +68,7 @@ async function getTable(req, res, next) {
     }
 }
 
-// Controller to obtain the referral link of an user
+// Controller to obtain the referral link of a user
 async function getReferralLink(req, res, next) {
     try {
         console.log("REQUEST", req.body)

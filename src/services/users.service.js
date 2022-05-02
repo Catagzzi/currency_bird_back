@@ -2,7 +2,7 @@
 const { query } = require("express")
 const db = require("./db.service")
 
-// Function to register an user in table user
+// Function to register a user in table user
 async function registerUser(name, email, address, sex, link) {
     const query = `INSERT INTO user (name, email, address, sex, referral_link)
     values (?, ?, ?, ?, ?);`
@@ -11,7 +11,7 @@ async function registerUser(name, email, address, sex, link) {
     return rows
 }
 
-// Function to save referral data of an user in table referral
+// Function to save referral data of a user in table referral
 async function saveReferralData(userID, total) {
     const query = `INSERT INTO referral (user, referred_quantity, total)
     values (?, 0, ?);`
@@ -19,7 +19,7 @@ async function saveReferralData(userID, total) {
     return rows
 }
 
-// Function to update referral data of an user in table referral
+// Function to update referral data of a user in table referral
 async function updateReferralData(userID) {
     const query = `
             UPDATE referral
@@ -29,7 +29,7 @@ async function updateReferralData(userID) {
     return rows
 }
 
-// Function to check if an user exists in table users by the email
+// Function to check if a user exists in table users by the email
 async function checkEmail(email) {
     const query = `SELECT COUNT(*) AS exist FROM user WHERE email = ?;`;
     const rows = await db.query(query, [email]);
@@ -61,16 +61,16 @@ async function getIDByLink(link) {
 // Function to check if a referral linl exists in table users
 async function checkLink(link) {
     const sqlGetUserIDByLink = `
-            SELECT count(id)
+            SELECT count(id) AS exist
             FROM user
             WHERE referral_link = ?`;
     const rows = await db.query(sqlGetUserIDByLink, [link]);
-    return rows[0].id
+    return rows[0].exist
 }
 
 
 
-// Function to get the referral link of an user by the email
+// Function to get the referral link of a user by the email
 async function getReferralLink(email) {
     const sqlGetReferralLink = `select referral_link FROM user where email = ?`;
     const rows = await db.query(sqlGetReferralLink, [email]);
