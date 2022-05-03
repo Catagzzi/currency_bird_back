@@ -1,3 +1,4 @@
+-- Just this quey to create the table user
 CREATE TABLE IF NOT EXISTS `user`(
     id BIGINT NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
@@ -10,6 +11,7 @@ CREATE TABLE IF NOT EXISTS `user`(
     UNIQUE(email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+-- Just this quey to create the table referral
 CREATE TABLE IF NOT EXISTS `referral`(
     id BIGINT NOT NULL AUTO_INCREMENT,
     user BIGINT NOT NULL,

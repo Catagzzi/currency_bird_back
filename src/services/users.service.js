@@ -6,7 +6,6 @@ const db = require("./db.service")
 async function registerUser(name, email, address, sex, link) {
     const query = `INSERT INTO user (name, email, address, sex, referral_link)
     values (?, ?, ?, ?, ?);`
-    console.log(name)
     const rows = await db.query(query, [name, email, address, sex, link])
     return rows
 }

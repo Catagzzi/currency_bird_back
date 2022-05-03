@@ -23,7 +23,6 @@ async function register(req, res, next) {
                         const resultSaveReferral = await userService.saveReferralData(insertedID, 5000);
                         // Get the ID of the source user
                         const sourceUserID = await userService.getIDByLink(req.body.referral_link);
-                        console.log("ID DEL USUARIO ORIGEN", sourceUserID )
                         // Update referred quantity (+1) and total (+5000)
                         const resultUpdateReferral = await userService.updateReferralData(sourceUserID);
                         // Create the response
