@@ -1,4 +1,4 @@
-# Currency Bird Backend
+# CurrencyBird Backend
 The backend of a platform that implements a referral system.
 
 ## **1) Requirements**
