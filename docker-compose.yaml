@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  app:
+    depends_on:
+      - db
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 3050:3050
+    volumes:
+      - ./:/app
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql/currency_bird.sql:/currency_bird.sql
