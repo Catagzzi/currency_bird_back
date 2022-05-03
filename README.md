@@ -9,17 +9,31 @@ After clonning the repository, make a copy of the ```.env.template``` file. Then
 > **_NOTE:_**  For local execution you can just leave everything as it is.
 
 ## **3) Execution**
-### **Recommended Mode**
+
+### **Step 1**
+#### Recommended Mode
 With the following commands, the database and the application will be executed, but only the application logs will be shown in the console, hidding those of the database.
 ```
 docker-compose up -d db
 docker-compose up app
 ```
-### **Simple Mode**
+#### Simple Mode
 With this command, the database and the application will be executed, showing all the logs on the screen.
 ```
 docker-compose up
 ```
+### **Step 2**
+After that, run the following command to execute the database.
+```
+docker-compose exec db sh
+```
+### **Step 3**
+Now, you are connected to the shell inside the database container. So you have to enter the database with these command.
+```
+mysql -u root -proot currency_bird
+```
+### **Step 4**
+To load the tables, notice that you have a folder called "migrations", where you'll find the "migration_01.sql" file. Please run the SQL queries from that file to create the tables.
 
 ## **4) Assumptions**
 1) The total that must be shown in the table must be all the money that the person has earned, both for entering with a link and for referring a link.
@@ -43,7 +57,7 @@ docker-compose up
 8) If the referral link isn't associated with any user, it shouldn't be functional.
 
 
-## **5) Improvement**
+## **5) Posible Improvements**
 
 1) Implementation of validations for each request sent from the frontend.
 
