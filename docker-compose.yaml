@@ -9,7 +9,7 @@ services:
     ports:
       - 3050:3050
     volumes:
-      - ./:/app
+      - ./src:/app/src
   db:
     image: mysql
     restart: always

@@ -2,11 +2,13 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package.json ./
+COPY package-lock.json ./
 
-RUN npm install
+RUN npm install --silent
+RUN npm install -g nodemon --silent
 
-RUN npm install -g nodemon
+COPY . ./
 
 CMD ["nodemon"]
 
