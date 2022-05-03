@@ -1,5 +1,5 @@
-# currency_bird_back
-Currency Bird entry test backend repository.
+# Currency Bird Backend
+The backend of a platform that implements a referral system.
 
 ## **1) Requirements**
 To run in a local environment, it only requires **Docker** and **Docker Compose**.
@@ -8,21 +8,15 @@ To run in a local environment, it only requires **Docker** and **Docker Compose*
 After clonning the repository, make a copy of the ```.env.template``` file. Then, rename the copy to ```.env``` and add your environment variables.
 > **_NOTE:_**  For local execution you can just leave everything as it is.
 
-After you finish completing the ```.env``` file, run the following command:
-
-```
-docker-compose build
-```
-
 ## **3) Execution**
 ### **Recommended Mode**
-With the following commands, the database and the application will be raised, but only the application logs will be shown in the console, hidding those of the database.
+With the following commands, the database and the application will be executed, but only the application logs will be shown in the console, hidding those of the database.
 ```
 docker-compose up -d db
 docker-compose up app
 ```
 ### **Simple Mode**
-With this command, the database and the application will be raised, showing all the logs on the screen.
+With this command, the database and the application will be executed, showing all the logs on the screen.
 ```
 docker-compose up
 ```
