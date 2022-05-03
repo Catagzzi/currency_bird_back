@@ -6,7 +6,7 @@ To run in a local environment, it only requires **Docker** and **Docker Compose*
 
 ## **2) Installation**
 After clonning the repository, make a copy of the ```.env.template``` file. Then, rename the copy to ```.env``` and add your environment variables.
-> **_NOTE:_**  For local execution you can just leave everything as it is.
+> **_NOTE:_** For local execution you can just leave everything as it is.
 
 ## **3) Execution**
 
@@ -23,6 +23,7 @@ With this command, the database and the application will be executed, showing al
 docker-compose up
 ```
 ### **Step 2**
+> **_NOTE:_** You can skip steps 2 and 3 if you use a SQL client like DBeaver.
 After that, run the following command to connect the database container.
 ```
 docker-compose exec db sh
@@ -32,14 +33,13 @@ Now, you are connected to the shell inside the database container. So you have t
 ```
 mysql -u root -proot currency_bird
 ```
-> **_NOTE:_** You can skip steps 2 and 3 if you use a SQL client like DBeaver.
 ### **Step 4**
 To load the tables, notice that you have a folder called "migrations", where you'll find the "migration_01.sql" file. Please run the SQL queries from that file one by one (there are just two) to create the tables.
 
 ## **4) Assumptions**
 1) The total that must be shown in the table must be all the money that the person has earned, both for entering with a link and for referring a link.
 
-2) It is not necessary to save history of each record (date and time of each record).
+2) It is not necessary to save history of each record (date and time of each registration).
 
 3) The value earned for each referral is unique and permanent over time.
 
@@ -62,7 +62,7 @@ To load the tables, notice that you have a folder called "migrations", where you
 
 2) Implementation of unit tests and integration tests.
 
-3) Refactoring of the data model to store a history of  invitation instead of just the total. This implies that the Referral table must contain:
+3) Refactoring of the data model to store a history of invitation instead of just the total. This implies that the Referral table must contain:
 
     * Origin user id
     * Referred user id
